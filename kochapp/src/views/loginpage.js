@@ -38,7 +38,7 @@ function LoginPage(props) {
                     <span className='keep-logged-in-label'>Angemeldet bleiben?</span>
                 </label>
                 <br/>
-                <button className='submit-button'>Log in</button>
+                <button className='submit-button'>Anmelden</button>
             </form>
         </>
     )
