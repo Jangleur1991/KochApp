@@ -1,4 +1,4 @@
-import React  from 'react'
+import React from 'react'
 
 const kochmuetze = <>
     <div className="toque">
@@ -14,11 +14,13 @@ function LoginPage(props) {
         <>
             <h1 style={{paddingTop: '15px'}}>KochApp</h1>
             {kochmuetze}
-            <form>
+            <form onSubmit={props.handleSubmit}>
                 <input
                     type="text"
                     name='username'
                     placeholder='Benutzername'
+                    value={props.data.username}
+                    onChange={props.handleChange}
                     className='input'
                 />
                 <br/>
@@ -26,6 +28,8 @@ function LoginPage(props) {
                     type="password"
                     name='password'
                     placeholder='Passwort'
+                    value={props.password}
+                    onChange={props.handleChange}
                     className='input'
                 />
                 <br/>
@@ -33,6 +37,8 @@ function LoginPage(props) {
                     <input
                         type="checkbox"
                         name="keepLoggedIn"
+                        checked={props.keepLoggedIn}
+                        onChange={props.handleChange}
                         className='keep-logged-in-check'
                     />
                     <span className='keep-logged-in-label'>Angemeldet bleiben?</span>

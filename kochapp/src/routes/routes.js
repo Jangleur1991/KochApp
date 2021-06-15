@@ -1,6 +1,6 @@
 import React from "react"
 import {Route, Switch} from "react-router"
-import ErrorPage from "../views/errorpage";
+import ErrorPage from "../views/errorpage"
 
 //Rendert Routes aus routes-config
 export function RenderRoutes({routes}) {
@@ -18,6 +18,12 @@ function RouteWithSubRoute(route) {
     return <Route
         path={route.path}
         exact={route.exact}
-        render={(props) => <route.component {...props} routes={route.routes}/>}
+        render={(props) => {
+            console.log("Props von aktueller Route: ", props)
+            return <route.component {...props} routes={route.routes}/>
+        }}
     />
 }
+
+
+
