@@ -1,7 +1,10 @@
 import React, {Component} from 'react'
 import LoginPage from "./views/loginpage"
 import './main.css'
-import {Redirect} from "react-router";
+import {Redirect} from "react-router"
+import {store} from "./redux/store"
+import {setPassword, setUsername} from "./redux/actions/actions"
+import {fakeAuth} from "./fakeAuth"
 
 //TODO: Refactoring mit Hooks
 class Main extends Component {
@@ -10,8 +13,7 @@ class Main extends Component {
         this.state = {
             username: '',
             password: '',
-            keepLoggedIn: false,
-            isAuthenticated: false
+            keepLoggedIn: false
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -28,15 +30,23 @@ class Main extends Component {
     handleSubmit(event) {
         event.preventDefault()
         const {username, password} = this.state
-        if (username && password) {
-            this.setState(prevState => ({...prevState, isAuthenticated: true}))
-        }
+        fakeAuth.authenticate({username, password}, () => {
+            //Lokalen State zurücksetzen
+            this.setState({
+                username: '',
+                password: '',
+                keepLoggedIn: false
+            })
+            //Passwort und Username speichern
+            store.dispatch(setUsername(username))
+            store.dispatch(setPassword(password))
+        })
     }
 
     render() {
         return (
             <div className='main'>
-                {this.state.isAuthenticated
+                {fakeAuth.isAuthenticated
                     ? <Redirect to='/app'/>
                     : <LoginPage
                         handleChange={this.handleChange}
