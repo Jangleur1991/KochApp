@@ -1,10 +1,11 @@
 import React from "react"
-import {Route, Switch} from "react-router"
+import {Redirect, Route, Switch} from "react-router"
 import ErrorPage from "../views/errorpage"
+import {fakeAuth} from "../fakeAuth"
+import {RouterPaths} from "../constants"
 
 //Rendert Routes aus routes-config
 export function RenderRoutes({routes}) {
-    console.log("Aktuelle Routes: ", routes)
     return (
         <Switch>
             {routes.map(route => <RouteWithSubRoute key={route.key} {...route}/>)}
@@ -15,14 +16,33 @@ export function RenderRoutes({routes}) {
 
 //Erzeugt ein Route mit potenziell mehreren SubRoutes
 function RouteWithSubRoute(route) {
-    return <Route
-        path={route.path}
-        exact={route.exact}
-        render={(props) => {
+    return (route.isPrivat)
+        ? <PrivatRoute
+            path={route.path}
+            exact={route.exact}
+            routes={route.routes}
+            component={route.component}
+        />
+        : <Route
+            path={route.path}
+            exact={route.exact}
+            render={(props) => {
+                console.log("Props von aktueller Route: ", props)
+                return <route.component {...props} routes={route.routes}/>
+            }}
+        />
+}
+
+//Zugriff auf Component, nur nach Authentifizierung
+function PrivatRoute({component: Component, routes, ...rest}) {
+    return (
+        <Route {...rest} render={(props) => {
             console.log("Props von aktueller Route: ", props)
-            return <route.component {...props} routes={route.routes}/>
-        }}
-    />
+            return fakeAuth.isAuthenticated
+                ? (<Component {...rest} routes={routes}/>)
+                : (<Redirect to={RouterPaths.LOGIN}/>)
+        }}/>
+    )
 }
 
 

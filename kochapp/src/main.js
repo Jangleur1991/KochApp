@@ -5,6 +5,7 @@ import {Redirect} from "react-router"
 import {store} from "./redux/store"
 import {setPassword, setUsername} from "./redux/actions/actions"
 import {fakeAuth} from "./fakeAuth"
+import {RouterPaths} from "./constants"
 
 //TODO: Refactoring mit Hooks
 class Main extends Component {
@@ -47,7 +48,7 @@ class Main extends Component {
         return (
             <div className='main'>
                 {fakeAuth.isAuthenticated
-                    ? <Redirect to='/app'/>
+                    ? <Redirect to={RouterPaths.APP} />
                     : <LoginPage
                         handleChange={this.handleChange}
                         handleSubmit={this.handleSubmit}
