@@ -5,6 +5,7 @@ import {RenderRoutes} from "./routes"
 import routeMenue from "./routemenue"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faBars} from "@fortawesome/free-solid-svg-icons"
+import {kochmuetze} from "../kochmuetze"
 
 
 //Routes Config File
@@ -47,6 +48,7 @@ function withSidebar(props) {
             <button className='dropbtn'><FontAwesomeIcon icon={faBars} style={{fontSize: '20px'}}/></button>
             <div className="dropdown-content">
                 <div className="dropdown-header">
+                    {kochmuetze}
                     <h2>KochApp</h2>
                 </div>
                 {routeMenue(props.routes)}
