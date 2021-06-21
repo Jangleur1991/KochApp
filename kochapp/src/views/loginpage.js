@@ -1,26 +1,53 @@
-import React from 'react'
+import React, {useState} from 'react'
+import {kochmuetze} from "../kochmuetze";
+import {fakeAuth} from "../fakeAuth";
+import {store} from "../redux/store";
+import {setPassword, setUsername} from "../redux/actions/actions";
 
-const kochmuetze = <>
-    <div className="toque">
-        <div className="toque-bottom"></div>
-        <div className="toque-left"></div>
-        <div className="toque-middle"></div>
-        <div className="toque-right"></div>
-    </div>
-</>
+const initCredentials = {
+    username: '',
+    password: ''
+}
 
 function LoginPage(props) {
+
+    const [credentials, setCredentials] = useState(initCredentials)
+    const [keepLoggedIn, setKeepLoggedIn] = useState(false)
+
+    function handleChange({target}) {
+        const {name, value, type, checked} = target
+        type === 'checkbox'
+            ? setKeepLoggedIn(checked)
+            : setCredentials(prevCred => ({...prevCred, [name]: value}))
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault()
+        const {username, password} = credentials
+        fakeAuth.authenticate({username, password}, () => {
+
+            //Lokalen State zurücksetzen
+            setCredentials(initCredentials)
+            setKeepLoggedIn(false)
+
+            //Passwort und Username speichern
+            //TODO: Anstatt Credentials Tokens speichern!!!
+            store.dispatch(setUsername(username))
+            store.dispatch(setPassword(password))
+        })
+    }
+
     return (
         <>
             <h1 style={{paddingTop: '15px'}}>KochApp</h1>
             {kochmuetze}
-            <form onSubmit={props.handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <input
                     type="text"
                     name='username'
                     placeholder='Benutzername'
-                    value={props.data.username}
-                    onChange={props.handleChange}
+                    value={credentials.username}
+                    onChange={handleChange}
                     className='input'
                 />
                 <br/>
@@ -28,8 +55,8 @@ function LoginPage(props) {
                     type="password"
                     name='password'
                     placeholder='Passwort'
-                    value={props.password}
-                    onChange={props.handleChange}
+                    value={credentials.password}
+                    onChange={handleChange}
                     className='input'
                 />
                 <br/>
@@ -37,8 +64,8 @@ function LoginPage(props) {
                     <input
                         type="checkbox"
                         name="keepLoggedIn"
-                        checked={props.keepLoggedIn}
-                        onChange={props.handleChange}
+                        checked={keepLoggedIn}
+                        onChange={handleChange}
                         className='keep-logged-in-check'
                     />
                     <span className='keep-logged-in-label'>Angemeldet bleiben?</span>
