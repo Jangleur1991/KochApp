@@ -42,13 +42,16 @@ export const ROUTES_CONFIG = [
 
 //TODO: Refactoring
 function withSidebar(props) {
-    return <div style={{paddingTop: '15px'}}>
+    return <>
         <div className="dropdown">
             <button className='dropbtn'><FontAwesomeIcon icon={faBars} style={{fontSize: '20px'}}/></button>
             <div className="dropdown-content">
+                <div className="dropdown-header">
+                    <h2>KochApp</h2>
+                </div>
                 {routeMenue(props.routes)}
             </div>
         </div>
         <div style={{marginLeft: '50px', padding: '1px 16px'}}>{RenderRoutes(props)}</div>
-    </div>
+    </>
 }
