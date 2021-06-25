@@ -8,5 +8,9 @@ export const validations = {
             value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,10}$/gi,
             message: 'Ihr Passwort entspricht nicht dem erfoderlichen Format!'
         }
+    },
+    age: {
+        required: true,
+        validateFunc: (age) => age < 18 ? 'You are not able to get a drive permission' : ''
     }
 }
