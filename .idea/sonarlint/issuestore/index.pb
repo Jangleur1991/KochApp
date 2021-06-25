@@ -9,3 +9,7 @@ L
 kochapp/src/routes/routes.js,b\6\b688acfe025071963fbf780ddcb0cdf84c7221dc
 P
  kochapp/src/routes/routemenue.js,4\6\46315979ab7df99f5e62e8240a1f9570589cfeef
+G
+kochapp/src/fakeAuth.js,1\a\1a71aa9bbe2086d03b851b0a3d3d159cfedc5be7
+S
+#kochapp/src/routes/routes-config.js,d\b\db4bdb79e6f6a56a16f63604463bf179f4ecb272
