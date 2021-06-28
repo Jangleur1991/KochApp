@@ -13,7 +13,7 @@ const borderColor = (error) => error && 'red'
 function LoginPage(props) {
 
     const [keepLoggedIn, setKeepLoggedIn] = useState(false)
-    const {values, errors, bindfield} = useFormValidation({validations: {...validations}})
+    const {values, errors, bindField} = useFormValidation({validations: {...validations}})
 
     function handleChangeKeepLogin({target}) {
         setKeepLoggedIn(target.checked)
@@ -40,7 +40,7 @@ function LoginPage(props) {
                     type="text"
                     name='username'
                     placeholder='Benutzername'
-                    {...bindfield('username')}
+                    {...bindField('username')}
                     className='input'
                     style={{borderColor: borderColor(errors.username)}}
                 />
@@ -50,7 +50,7 @@ function LoginPage(props) {
                     type="password"
                     name='password'
                     placeholder='Passwort'
-                    {...bindfield('password')}
+                    {...bindField('password')}
                     className='input'
                     style={{borderColor: borderColor(errors.password)}}
                 />

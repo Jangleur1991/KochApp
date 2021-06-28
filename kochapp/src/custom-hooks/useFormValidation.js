@@ -1,12 +1,11 @@
-//TODO: Refactoring und erweitern!
-import {useState} from "react";
+import {useState} from "react"
 
-export function useFormValidation({validations}) {
+export function useFormValidation({validations, initialValues}) {
 
-    const [values, setValues] = useState({})
+    _checkParameter(validations, initialValues)
+
+    const [values, setValues] = useState(initialValues || {})
     const [errors, setErrors] = useState({})
-
-    _checkParameter({validations})
 
     function validateField(name, value) {
         const rules = validations[name]
@@ -20,13 +19,8 @@ export function useFormValidation({validations}) {
         }
     }
 
-    function bindfield(name) {
-        if (!name)
-            throw new Error('The field name parameter is required!')
-
-        if (typeof name !== 'string')
-            throw new Error('The field name should be a string')
-
+    function bindField(name) {
+        _checkBindFieldParameter(name)
         return {
             value: values[name] || '',
             onChange: ({target}) => {
@@ -49,20 +43,27 @@ export function useFormValidation({validations}) {
         validateField,
         values,
         errors,
-        bindfield
+        bindField
     }
-
 }
 
-//Helper Functions
-function _checkParameter({validations}) {
-    if (!validations) {
+function _checkParameter(validations, initialValues) {
+    if (!validations)
         throw new Error('The prop `validations` is required!')
-    }
 
-    if (typeof validations !== 'object') {
+    if (typeof validations !== 'object')
         throw new Error('The prop `validations` has to be an object!')
-    }
+
+    if (initialValues && typeof initialValues !== 'object')
+        throw new Error('The prop `initialValues` should be an object')
+}
+
+function _checkBindFieldParameter(name) {
+    if (!name)
+        throw new Error('The field name parameter is required!')
+
+    if (typeof name !== 'string')
+        throw new Error('The field name should be a string')
 }
 
 //TODO: Refactoring
