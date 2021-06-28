@@ -1,4 +1,4 @@
-export const validations = {
+export const loginPageValidations = {
     username: {
         required: 'Bitte geben Sie Ihren Benutzernamen ein.'
     },
@@ -9,8 +9,8 @@ export const validations = {
             message: 'Falsches Format!'
         }
     },
-    age: {
-        required: true,
-        validateFunc: (age) => age < 16 ? 'Sie dürfen noch nicht Auto fahren.' : ''
-    }
+    // age: {
+    //     required: false,
+    //     validateFunc: (age) => age < 16 ? 'Sie dürfen noch nicht Auto fahren.' : ''
+    // }
 }

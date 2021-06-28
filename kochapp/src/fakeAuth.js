@@ -1,7 +1,7 @@
 //Temporaere fakeAuth solange noch kein Backend vorhanden ist!
 
 const USERNAME = 'admin'
-const PASSWORD = 'admin123'
+const PASSWORD = 'admin123!'
 
 export const fakeAuth = {
     isAuthenticated: false,

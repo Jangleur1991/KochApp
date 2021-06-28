@@ -2,9 +2,9 @@ import React, {useState} from 'react'
 import {kochmuetze} from "../kochmuetze";
 import {fakeAuth} from "../fakeAuth";
 import {store} from "../redux/store";
-import {setPassword, setUsername} from "../redux/actions/actions";
-import {useFormValidation} from "../custom-hooks/useFormValidation";
-import {validations} from "../validations/validations";
+import {setPassword, setUsername} from "../redux/actions/actions"
+import {useFormValidation} from "../custom-hooks/useFormValidation"
+import {loginPageValidations} from "../validations/validations"
 
 
 const displayError = (error) => error && <div className='error'>{error}</div>
@@ -13,7 +13,13 @@ const borderColor = (error) => error && 'red'
 function LoginPage(props) {
 
     const [keepLoggedIn, setKeepLoggedIn] = useState(false)
-    const {values, errors, bindField} = useFormValidation({validations: {...validations}})
+    const {values, errors, bindField, isValid} = useFormValidation({
+        initialValues: {
+            username: 'admin',
+            password: 'admin123!'
+        },
+        validations: {...loginPageValidations}
+    })
 
     function handleChangeKeepLogin({target}) {
         setKeepLoggedIn(target.checked)
@@ -67,7 +73,7 @@ function LoginPage(props) {
                     <span className='keep-logged-in-label'>Angemeldet bleiben?</span>
                 </label>
                 <br/>
-                <button className='submit-button'>Anmelden</button>
+                <button className='submit-button' disabled={!isValid()}>Anmelden</button>
             </form>
         </div>
     )

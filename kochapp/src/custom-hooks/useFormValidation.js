@@ -7,18 +7,6 @@ export function useFormValidation({validations, initialValues}) {
     const [values, setValues] = useState(initialValues || {})
     const [errors, setErrors] = useState({})
 
-    function validateField(name, value) {
-        const rules = validations[name]
-        if (rules) {
-            const {required, pattern, validateFunc} = rules
-            return [
-                required && _checkRequired(required, value),
-                pattern && _checkPattern(pattern, value),
-                validateFunc && _checkValidateFunc(validateFunc, value)
-            ].find(m => m) || ''
-        }
-    }
-
     function bindField(name) {
         _checkBindFieldParameter(name)
         return {
@@ -33,17 +21,33 @@ export function useFormValidation({validations, initialValues}) {
 
                 setErrors(state => ({
                     ...state,
-                    [name]: validateField(name, value)
+                    [name]: _validateField(name, value)
                 }))
             }
         }
     }
 
+    function isValid() {
+        return !Object.keys(validations).some(name => Boolean(_validateField(name, values[name])))
+    }
+
+    function _validateField(name, value) {
+        const rules = validations[name]
+        if (rules) {
+            const {required, pattern, validateFunc} = rules
+            return [
+                required && _checkRequired(required, value),
+                pattern && _checkPattern(pattern, value),
+                validateFunc && _checkValidateFunc(validateFunc, value)
+            ].find(m => m) || ''
+        }
+    }
+
     return {
-        validateField,
         values,
         errors,
-        bindField
+        bindField,
+        isValid
     }
 }
 
@@ -68,7 +72,7 @@ function _checkBindFieldParameter(name) {
 
 //TODO: Refactoring
 function _checkRequired(required, value) {
-    if (!value.trim()) {
+    if (!value || !value.trim()) {
         return (typeof required === 'string')
             ? required
             : 'Eingabe ist erforderlich!'
