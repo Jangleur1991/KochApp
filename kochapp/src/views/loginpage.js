@@ -3,32 +3,26 @@ import {kochmuetze} from "../kochmuetze";
 import {fakeAuth} from "../fakeAuth";
 import {store} from "../redux/store";
 import {setPassword, setUsername} from "../redux/actions/actions";
+import {useFormValidation} from "../custom-hooks/useFormValidation";
+import {validations} from "../validations/validations";
 
-const initCredentials = {
-    username: '',
-    password: ''
-}
+
+const displayError = (error) => error && <div className='error'>{error}</div>
+const borderColor = (error) => error && 'red'
 
 function LoginPage(props) {
 
-    const [credentials, setCredentials] = useState(initCredentials)
     const [keepLoggedIn, setKeepLoggedIn] = useState(false)
+    const {values, errors, bindfield} = useFormValidation({validations: {...validations}})
 
-    function handleChange({target}) {
-        const {name, value, type, checked} = target
-        type === 'checkbox'
-            ? setKeepLoggedIn(checked)
-            : setCredentials(prevCred => ({...prevCred, [name]: value}))
+    function handleChangeKeepLogin({target}) {
+        setKeepLoggedIn(target.checked)
     }
 
     function handleSubmit(event) {
         event.preventDefault()
-        const {username, password} = credentials
+        const {username, password} = values
         fakeAuth.authenticate({username, password}, () => {
-
-            //Lokalen State zurücksetzen
-            setCredentials(initCredentials)
-            setKeepLoggedIn(false)
 
             //Passwort und Username speichern
             //TODO: Anstatt Credentials Tokens speichern!!!
@@ -38,34 +32,36 @@ function LoginPage(props) {
     }
 
     return (
-        <>
-            <h1 style={{paddingTop: '15px'}}>KochApp</h1>
+        <div style={{paddingTop: '5px'}}>
+            <h1>KochApp</h1>
             {kochmuetze}
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
                     name='username'
                     placeholder='Benutzername'
-                    value={credentials.username}
-                    onChange={handleChange}
+                    {...bindfield('username')}
                     className='input'
+                    style={{borderColor: borderColor(errors.username)}}
                 />
+                {displayError(errors.username)}
                 <br/>
                 <input
                     type="password"
                     name='password'
                     placeholder='Passwort'
-                    value={credentials.password}
-                    onChange={handleChange}
+                    {...bindfield('password')}
                     className='input'
+                    style={{borderColor: borderColor(errors.password)}}
                 />
+                {displayError(errors.password)}
                 <br/>
                 <label className='keep-logged-in'>
                     <input
                         type="checkbox"
                         name="keepLoggedIn"
                         checked={keepLoggedIn}
-                        onChange={handleChange}
+                        onChange={handleChangeKeepLogin}
                         className='keep-logged-in-check'
                     />
                     <span className='keep-logged-in-label'>Angemeldet bleiben?</span>
@@ -73,7 +69,7 @@ function LoginPage(props) {
                 <br/>
                 <button className='submit-button'>Anmelden</button>
             </form>
-        </>
+        </div>
     )
 }
 

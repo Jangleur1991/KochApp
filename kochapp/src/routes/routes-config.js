@@ -54,6 +54,6 @@ function withSidebar(props) {
                 {routeMenue(props.routes)}
             </div>
         </div>
-        <div style={{marginLeft: '50px', padding: '1px 16px'}}>{RenderRoutes(props)}</div>
+        <div style={{padding: '1px 16px'}}>{RenderRoutes(props)}</div>
     </>
 }

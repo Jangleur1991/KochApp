@@ -1,5 +1,10 @@
 //TODO: Refactoring und erweitern!
+import {useState} from "react";
+
 export function useFormValidation({validations}) {
+
+    const [values, setValues] = useState({})
+    const [errors, setErrors] = useState({})
 
     _checkParameter({validations})
 
@@ -8,15 +13,43 @@ export function useFormValidation({validations}) {
         if (rules) {
             const {required, pattern, validateFunc} = rules
             return [
-                required && _checkRequired(required),
+                required && _checkRequired(required, value),
                 pattern && _checkPattern(pattern, value),
                 validateFunc && _checkValidateFunc(validateFunc, value)
-            ].find(m => m)
+            ].find(m => m) || ''
+        }
+    }
+
+    function bindfield(name) {
+        if (!name)
+            throw new Error('The field name parameter is required!')
+
+        if (typeof name !== 'string')
+            throw new Error('The field name should be a string')
+
+        return {
+            value: values[name] || '',
+            onChange: ({target}) => {
+                const {value} = target
+
+                setValues(state => ({
+                    ...state,
+                    [name]: value
+                }))
+
+                setErrors(state => ({
+                    ...state,
+                    [name]: validateField(name, value)
+                }))
+            }
         }
     }
 
     return {
-        validateField
+        validateField,
+        values,
+        errors,
+        bindfield
     }
 
 }
@@ -32,10 +65,14 @@ function _checkParameter({validations}) {
     }
 }
 
-function _checkRequired(required) {
-    return (typeof required === 'string')
-        ? required
-        : 'Eingabe ist erforderlich!'
+//TODO: Refactoring
+function _checkRequired(required, value) {
+    if (!value.trim()) {
+        return (typeof required === 'string')
+            ? required
+            : 'Eingabe ist erforderlich!'
+    }
+    return ''
 }
 
 function _checkPattern(pattern, value) {

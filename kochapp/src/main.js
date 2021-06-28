@@ -12,12 +12,12 @@ function Main() {
     const loginState = useSelector(state => state.loginState)
 
     return (
-        <div className='main'>
+        <>
             {fakeAuth.isAuthenticated
                 ? <Redirect to={RouterPaths.APP}/>
                 : <LoginPage/>
             }
-        </div>
+        </>
     )
 }
 

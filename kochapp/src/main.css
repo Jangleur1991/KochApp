@@ -5,13 +5,16 @@
     src: local('HashedBrowns-WyJgn'), url(./fonts/HashedBrowns-WyJgn.ttf) format('truetype');
 }
 
+body {
+    background: lightgray;
+}
+
 .main {
-    margin: -20px auto;
+    margin: 0 auto;
     font-size: 16px;
     font-family: HashedBrowns-WyJgn, monospace;
     text-align: center;
     min-width: 360px;
-    padding-top: 15px;
     max-width: 414px;
     min-height: 812px;
     color: white;
@@ -38,11 +41,11 @@
 .dropdown-content {
     display: none;
     position: absolute;
-    top: -10px;
+    top: -15px;
     left: 0;
     min-width: 310px;
     max-width: 364px;
-    min-height: 807px;
+    min-height: 812px;
     z-index: 1;
     background: #f1f1f1;
     box-shadow: 105px 0 0 0 rgb(0 0 0 / 40%);
@@ -97,7 +100,6 @@
 .input {
     padding: 5px 15px;
     margin-bottom: 15px;
-    border-width: 1px;
     border-style: solid;
     border-radius: 5px;
 }
@@ -245,4 +247,11 @@
     right: 0;
     top: 0;
     bottom: 0;
+}
+
+.error {
+    color: red;
+    font-family: monospace;
+    font-size: 0.7em;
+    margin-top: -5px;
 }
