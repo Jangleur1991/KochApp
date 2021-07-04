@@ -139,12 +139,6 @@ body {
     width: 70px;
 }
 
-/*.toque:hover {*/
-/*    animation-name: beat;*/
-/*    animation-duration: 1s;*/
-/*    animation-iteration-count: infinite;*/
-/*}*/
-
 .toque div {
     border: solid 1px black;
 }
@@ -222,24 +216,6 @@ body {
     content: '';
 }
 
-/*@keyframes beat {*/
-/*    0% {*/
-/*        transform: rotate(0deg);*/
-/*    }*/
-/*    25% {*/
-/*        transform: rotate(-20deg);*/
-/*    }*/
-/*    50% {*/
-/*        transform: rotate(0deg);*/
-/*    }*/
-/*    75% {*/
-/*        transform: rotate(20deg);*/
-/*    }*/
-/*    100% {*/
-/*        transform: rotate(0deg);*/
-/*    }*/
-/*}*/
-
 .errorpage {
     margin: auto;
     position: relative;
@@ -254,4 +230,94 @@ body {
     font-family: monospace;
     font-size: 0.7em;
     margin-top: -5px;
+}
+
+.login-button {
+    border-radius: 5px;
+    width: 185px;
+    margin-top: 15px;
+    padding: 3px;
+    border-width: 1px;
+    border-style: solid;
+    background-color: white;
+    margin-bottom: 15px;
+}
+
+.register-button {
+    border-radius: 5px;
+    width: 155px;
+    margin-top: 15px;
+    padding: 3px;
+    border-width: 1px;
+    border-style: solid;
+    background-color: white;
+}
+
+.register-container * {
+    box-sizing: border-box;
+}
+
+.register-container {
+    box-sizing: border-box;
+    width: 92%;
+    padding: 20px;
+    margin: 0 auto;
+    border-radius: 10px;
+    /*border: 3px solid white;*/
+}
+
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+.register-label {
+    display: inline-block;
+    padding: 8px 8px 8px 0;
+    font-size: 12px;
+    /*font-family: monospace;*/
+}
+
+.register-input {
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 6px;
+    border-radius: 4px;
+}
+
+.register-submit {
+    border-radius: 5px;
+    width: 185px;
+    margin-top: 15px;
+    margin-left: 15px;
+    padding: 5px;
+    border-width: 1px;
+    border-style: solid;
+    background-color: white;
+}
+
+@media screen and (max-width: 600px) {
+    .col-25, .col-75 {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .register-submit  {
+        width: 80%;
+        margin-left: 0;
+        margin-top: 25px;
+    }
 }

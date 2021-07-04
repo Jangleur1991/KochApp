@@ -1,5 +1,6 @@
 export const RouterPaths = Object.freeze({
     LOGIN: "/",
+    REGISTER: "/register",
     APP: '/app',
     APP_ROOT: '/app',
     APP_PAGE_1: '/app/page_1',
@@ -9,6 +10,7 @@ export const RouterPaths = Object.freeze({
 
 export const RouterKeys = Object.freeze({
     LOGIN: 'ROOT',
+    REGISTER: "REGISTER",
     APP: 'APP',
     APP_ROOT: 'APP_ROOT',
     APP_PAGE_1: 'APP_PAGE_1',

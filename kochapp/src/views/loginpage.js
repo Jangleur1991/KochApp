@@ -5,13 +5,15 @@ import {store} from "../redux/store";
 import {setPassword, setUsername} from "../redux/actions/actions"
 import {useFormValidation} from "../custom-hooks/useFormValidation"
 import {loginPageValidations} from "../validations/validations"
+import {RouterPaths} from "../constants";
+import {useHistory} from "react-router-dom";
 
 
 const displayError = (error) => error && <div className='error'>{error}</div>
 const borderColor = (error) => error && 'red'
 
-function LoginPage(props) {
-
+function LoginPage() {
+    const history = useHistory()
     const [keepLoggedIn, setKeepLoggedIn] = useState(false)
     const {values, errors, bindField, isValid} = useFormValidation({
         initialValues: {
@@ -73,8 +75,16 @@ function LoginPage(props) {
                     <span className='keep-logged-in-label'>Angemeldet bleiben?</span>
                 </label>
                 <br/>
-                <button className='submit-button' disabled={!isValid()}>Anmelden</button>
+                <button className='login-button' disabled={!isValid()}>Anmelden</button>
             </form>
+            <button
+                name='register'
+                className='register-button'
+                onClick={(e) => {
+                    history.push(RouterPaths.REGISTER)
+                }}
+            >Konto erstellen
+            </button>
         </div>
     )
 }

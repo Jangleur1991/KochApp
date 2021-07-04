@@ -6,11 +6,13 @@ import routeMenue from "./routemenue"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faBars} from "@fortawesome/free-solid-svg-icons"
 import {kochmuetze} from "../kochmuetze"
+import RegisterPage from "../views/registerpage";
 
 
 //Routes Config File
 export const ROUTES_CONFIG = [
     {path: RouterPaths.LOGIN, key: RouterKeys.LOGIN, exact: true, component: Main},
+    {path: RouterPaths.REGISTER, key: RouterKeys.REGISTER, exact: true, component: RegisterPage},
     {
         path: RouterPaths.APP,
         key: RouterKeys.APP,
