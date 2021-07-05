@@ -321,3 +321,25 @@ body {
         margin-top: 25px;
     }
 }
+
+@media screen and (max-height: 415px) {
+    .main {
+        min-width: 812px;
+    }
+    .register-container {
+        width: 50%;
+    }
+
+    .dropdown-content {
+        min-width: 450px;
+        max-width: 812px;
+        box-shadow: 450px 0 0 0 rgb(0 0 0 / 40%);
+    }
+
+    .dropdown-header .toque {
+        position: absolute;
+        top: -45px;
+        left: 165px;
+        transform: scale(0.3) rotate(-20deg);
+    }
+}
