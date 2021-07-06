@@ -1,8 +1,18 @@
 import React from "react"
 import {useHistory} from "react-router-dom";
+import {useFormValidation} from "../custom-hooks/useFormValidation";
+import {registerPageValidations} from "../validations/validations";
+
+const displayError = (error) => error && <div className='error' style={{marginTop: '5px'}}>{error}</div>
+const borderColor = (error) => error && 'red'
 
 function RegisterPage() {
     const history = useHistory()
+
+    const {values, errors, bindField, isValid} = useFormValidation({
+        validations: {...registerPageValidations}
+    })
+
     return (
         <div style={{paddingTop: '15px'}}>
             <div class="register-container">
@@ -19,7 +29,10 @@ function RegisterPage() {
                                 name="username"
                                 placeholder="Benutzername"
                                 className="register-input"
+                                {...bindField('username')}
+                                style={{borderColor: borderColor(errors.username)}}
                             />
+                            {displayError(errors.username)}
                         </div>
                     </div>
                     <div className="row">
@@ -33,7 +46,10 @@ function RegisterPage() {
                                 name="passwort"
                                 placeholder="Passwort"
                                 className="register-input"
+                                {...bindField('passwort')}
+                                style={{borderColor: borderColor(errors.passwort)}}
                             />
+                            {displayError(errors.passwort)}
                         </div>
                     </div>
                     <div className="row">
@@ -41,6 +57,7 @@ function RegisterPage() {
                             type="submit"
                             value="Registrieren"
                             className='register-submit'
+                            disabled={!isValid()}
                         />
                     </div>
                 </form>

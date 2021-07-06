@@ -282,6 +282,7 @@ body {
     float: left;
     width: 75%;
     margin-top: 6px;
+    margin-bottom: 25px;
 }
 
 .register-label {
@@ -293,7 +294,7 @@ body {
 
 .register-input {
     width: 100%;
-    border: 1px solid #ccc;
+    border-style: solid;
     padding: 6px;
     border-radius: 4px;
 }
