@@ -2,6 +2,7 @@ import React from "react"
 import {useHistory} from "react-router-dom";
 import {useFormValidation} from "../custom-hooks/useFormValidation";
 import {registerPageValidations} from "../validations/validations";
+import InputTextField from "../components/inputTextField";
 
 const displayError = (error) => error && <div className='error' style={{marginTop: '5px'}}>{error}</div>
 const borderColor = (error) => error && 'red'
@@ -9,30 +10,28 @@ const borderColor = (error) => error && 'red'
 function RegisterPage() {
     const history = useHistory()
 
-    const {values, errors, bindField, isValid} = useFormValidation({
+    const validation = useFormValidation({
         validations: {...registerPageValidations}
     })
 
+    const {values, errors, bindField, isValid} = validation
+
     return (
         <div style={{paddingTop: '15px'}}>
-            <div class="register-container">
+            <div className="register-container">
                 <h2 style={{float: 'left'}}>Jetzt registrieren</h2>
                 <form style={{clear: 'left'}}>
-                    <div class='row'>
+                    <div className='row'>
                         <div className="col-25">
                             <label htmlFor="username" className="register-label">Benutzername</label>
                         </div>
                         <div className="col-75">
-                            <input
-                                type="text"
-                                id="username"
-                                name="username"
-                                placeholder="Benutzername"
+                            <InputTextField
+                                name='username'
+                                placeholder='Benutzername'
+                                validation={validation}
                                 className="register-input"
-                                {...bindField('username')}
-                                style={{borderColor: borderColor(errors.username)}}
                             />
-                            {displayError(errors.username)}
                         </div>
                     </div>
                     <div className="row">

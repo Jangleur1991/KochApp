@@ -2,11 +2,11 @@ import React from "react"
 import {RouterKeys, RouterPaths} from "../constants"
 import Main from "../main"
 import {RenderRoutes} from "./routes"
-import routeMenue from "./routemenue"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faBars} from "@fortawesome/free-solid-svg-icons"
 import {kochmuetze} from "../kochmuetze"
 import RegisterPage from "../views/registerpage";
+import RouteMenue from "./routemenue";
 
 
 //Routes Config File
@@ -53,7 +53,7 @@ function withSidebar(props) {
                     {kochmuetze}
                     <h2>KochApp</h2>
                 </div>
-                {routeMenue(props.routes)}
+                {RouteMenue(props.routes)}
             </div>
         </div>
         <div style={{padding: '1px 16px'}}>{RenderRoutes(props)}</div>

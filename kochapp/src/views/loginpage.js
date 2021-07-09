@@ -7,6 +7,7 @@ import {useFormValidation} from "../custom-hooks/useFormValidation"
 import {loginPageValidations} from "../validations/validations"
 import {RouterPaths} from "../constants";
 import {useHistory} from "react-router-dom";
+import InputTextField from "../components/inputTextField";
 
 
 const displayError = (error) => error && <div className='error'>{error}</div>
@@ -15,7 +16,8 @@ const borderColor = (error) => error && 'red'
 function LoginPage() {
     const history = useHistory()
     const [keepLoggedIn, setKeepLoggedIn] = useState(false)
-    const {values, errors, bindField, isValid} = useFormValidation({
+
+    const validation = useFormValidation({
         initialValues: {
             username: 'admin',
             password: 'admin123!'
@@ -29,7 +31,7 @@ function LoginPage() {
 
     function handleSubmit(event) {
         event.preventDefault()
-        const {username, password} = values
+        const {username, password} = validation.values
         fakeAuth.authenticate({username, password}, () => {
 
             //Passwort und Username speichern
@@ -44,25 +46,21 @@ function LoginPage() {
             <h1>KochApp</h1>
             {kochmuetze}
             <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
+                <InputTextField
                     name='username'
                     placeholder='Benutzername'
-                    {...bindField('username')}
-                    className='input'
-                    style={{borderColor: borderColor(errors.username)}}
+                    validation={validation}
                 />
-                {displayError(errors.username)}
                 <br/>
                 <input
                     type="password"
                     name='password'
                     placeholder='Passwort'
-                    {...bindField('password')}
+                    {...validation.bindField('password')}
                     className='input'
-                    style={{borderColor: borderColor(errors.password)}}
+                    style={{borderColor: borderColor(validation.errors.password)}}
                 />
-                {displayError(errors.password)}
+                {displayError(validation.errors.password)}
                 <br/>
                 <label className='keep-logged-in'>
                     <input
@@ -75,7 +73,7 @@ function LoginPage() {
                     <span className='keep-logged-in-label'>Angemeldet bleiben?</span>
                 </label>
                 <br/>
-                <button className='login-button' disabled={!isValid()}>Anmelden</button>
+                <button className='login-button' disabled={!validation.isValid()}>Anmelden</button>
             </form>
             <button
                 name='register'

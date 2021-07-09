@@ -3,12 +3,14 @@ import {Redirect, Route, Switch} from "react-router"
 import ErrorPage from "../views/errorpage"
 import {fakeAuth} from "../fakeAuth"
 import {RouterPaths} from "../constants"
+import Logout from "../views/logout";
 
 //Rendert Routes aus routes-config
 export function RenderRoutes({routes}) {
     return (
         <Switch>
             {routes.map(route => <RouteWithSubRoute key={route.key} {...route}/>)}
+            <Route path="/logout" component={Logout}/>
             <Route component={ErrorPage}/>
         </Switch>
     )

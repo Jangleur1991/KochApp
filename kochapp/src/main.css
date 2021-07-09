@@ -82,8 +82,21 @@ body {
 .dropdown-link {
     display: block;
     text-decoration: none;
-    padding: 8px 16px;
+    padding: 12px 20px;
     text-align: left;
+    color: #1e3b70;
+}
+
+.dropdown-logout {
+    display: block;
+    text-decoration: none;
+    padding: 12px 12px 12px 10px;
+    text-align: left;
+    color: #1e3b70;
+}
+
+.dropdown-logout:hover {
+    background: #cbd3d8;
     color: #1e3b70;
 }
 

@@ -5,7 +5,8 @@ export const RouterPaths = Object.freeze({
     APP_ROOT: '/app',
     APP_PAGE_1: '/app/page_1',
     APP_PAGE_2: '/app/page_2',
-    ERROR: '/error'
+    ERROR: '/error',
+    LOGOUT: "/app/logout"
 })
 
 export const RouterKeys = Object.freeze({
@@ -15,5 +16,6 @@ export const RouterKeys = Object.freeze({
     APP_ROOT: 'APP_ROOT',
     APP_PAGE_1: 'APP_PAGE_1',
     APP_PAGE_2: 'APP_PAGE_2',
-    ERROR: 'ERROR'
+    ERROR: 'ERROR',
+    LOGOUT: 'LOGOUT'
 })
