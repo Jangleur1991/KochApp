@@ -2,10 +2,8 @@ import React from "react"
 import {useHistory} from "react-router-dom";
 import {useFormValidation} from "../custom-hooks/useFormValidation";
 import {registerPageValidations} from "../validations/validations";
-import InputTextField from "../components/inputTextField";
-
-const displayError = (error) => error && <div className='error' style={{marginTop: '5px'}}>{error}</div>
-const borderColor = (error) => error && 'red'
+import InputField from "../components/InputField";
+import Button from "../components/Button";
 
 function RegisterPage() {
     const history = useHistory()
@@ -13,8 +11,6 @@ function RegisterPage() {
     const validation = useFormValidation({
         validations: {...registerPageValidations}
     })
-
-    const {values, errors, bindField, isValid} = validation
 
     return (
         <div style={{paddingTop: '15px'}}>
@@ -26,11 +22,12 @@ function RegisterPage() {
                             <label htmlFor="username" className="register-label">Benutzername</label>
                         </div>
                         <div className="col-75">
-                            <InputTextField
+                            <InputField
                                 name='username'
                                 placeholder='Benutzername'
                                 validation={validation}
                                 className="register-input"
+                                classNameError="error-register"
                             />
                         </div>
                     </div>
@@ -39,33 +36,32 @@ function RegisterPage() {
                             <label htmlFor="passwort" className="register-label">Passwort</label>
                         </div>
                         <div className="col-75">
-                            <input
+                            <InputField
                                 type="password"
                                 id="passwort"
                                 name="passwort"
                                 placeholder="Passwort"
                                 className="register-input"
-                                {...bindField('passwort')}
-                                style={{borderColor: borderColor(errors.passwort)}}
+                                classNameError="error-register"
+                                validation={validation}
                             />
-                            {displayError(errors.passwort)}
                         </div>
                     </div>
                     <div className="row">
-                        <input
-                            type="submit"
-                            value="Registrieren"
+                        <Button
+                            name='register'
+                            text='Registrieren'
                             className='register-submit'
-                            disabled={!isValid()}
+                            disabled={!validation.isValid()}
                         />
                     </div>
                 </form>
-                <button
+                <Button
+                    name='abbrechen'
+                    text='Abbrechen'
                     className='register-submit'
-                    onClick={(e) => {
-                        history.push('/')
-                    }}>Abbrechen
-                </button>
+                    onClick={() => history.push('/')}
+                />
             </div>
         </div>
     )

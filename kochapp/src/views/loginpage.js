@@ -7,11 +7,9 @@ import {useFormValidation} from "../custom-hooks/useFormValidation"
 import {loginPageValidations} from "../validations/validations"
 import {RouterPaths} from "../constants";
 import {useHistory} from "react-router-dom";
-import InputTextField from "../components/inputTextField";
-
-
-const displayError = (error) => error && <div className='error'>{error}</div>
-const borderColor = (error) => error && 'red'
+import InputField from "../components/InputField";
+import CheckBox from "../components/CheckBox";
+import Button from "../components/Button";
 
 function LoginPage() {
     const history = useHistory()
@@ -46,43 +44,38 @@ function LoginPage() {
             <h1>KochApp</h1>
             {kochmuetze}
             <form onSubmit={handleSubmit}>
-                <InputTextField
+                <InputField
                     name='username'
                     placeholder='Benutzername'
                     validation={validation}
                 />
                 <br/>
-                <input
+                <InputField
                     type="password"
-                    name='password'
+                    name="password"
                     placeholder='Passwort'
-                    {...validation.bindField('password')}
-                    className='input'
-                    style={{borderColor: borderColor(validation.errors.password)}}
+                    validation={validation}
                 />
-                {displayError(validation.errors.password)}
                 <br/>
-                <label className='keep-logged-in'>
-                    <input
-                        type="checkbox"
-                        name="keepLoggedIn"
-                        checked={keepLoggedIn}
-                        onChange={handleChangeKeepLogin}
-                        className='keep-logged-in-check'
-                    />
-                    <span className='keep-logged-in-label'>Angemeldet bleiben?</span>
-                </label>
+                <CheckBox
+                    name="keepLoggedIn"
+                    checked={keepLoggedIn}
+                    onChange={handleChangeKeepLogin}
+                    labelText='Angenmeldet bleiben?'
+                />
                 <br/>
-                <button className='login-button' disabled={!validation.isValid()}>Anmelden</button>
+                <Button
+                    name='loginButton'
+                    text='Anmelden'
+                    className='login-button'
+                    disabled={!validation.isValid()}
+                />
             </form>
-            <button
+            <Button
                 name='register'
-                className='register-button'
-                onClick={(e) => {
-                    history.push(RouterPaths.REGISTER)
-                }}
-            >Konto erstellen
-            </button>
+                text='Konto erstellen'
+                onClick={() => history.push(RouterPaths.REGISTER)}
+            />
         </div>
     )
 }
