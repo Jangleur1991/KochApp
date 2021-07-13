@@ -1,13 +1,9 @@
 import React from "react"
 import {RouterKeys, RouterPaths} from "../constants"
 import Main from "../main"
-import {RenderRoutes} from "./routes"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faBars} from "@fortawesome/free-solid-svg-icons"
-import {kochmuetze} from "../kochmuetze"
 import RegisterPage from "../views/registerpage";
-import RouteMenue from "./routemenue";
 import Logout from "../views/logout";
+import Sidebar from "../sidebar/Sidebar";
 
 
 //Routes Config File
@@ -17,7 +13,7 @@ export const ROUTES_CONFIG = [
     {
         path: RouterPaths.APP,
         key: RouterKeys.APP,
-        component: withSidebar, //Benoetigt fuer nested routing
+        component: Sidebar,
         routes: [
             {
                 path: RouterPaths.APP,
@@ -42,22 +38,8 @@ export const ROUTES_CONFIG = [
             }
         ]
     },
+    //TODO: Sollte nicht privat sein, aber auch nicht einfach zu erreichen.
+    // Wie umsetzen?
     {path: RouterPaths.LOGOUT, key: RouterKeys.LOGOUT, exact: true, isPrivat: true, component: Logout},
 ]
 
-//TODO: Refactoring
-function withSidebar(props) {
-    return <>
-        <div className="dropdown">
-            <button className='dropbtn'><FontAwesomeIcon icon={faBars} style={{fontSize: '20px'}}/></button>
-            <div className="dropdown-content">
-                <div className="dropdown-header">
-                    {kochmuetze}
-                    <h2>KochApp</h2>
-                </div>
-                {RouteMenue(props.routes)}
-            </div>
-        </div>
-        <div style={{padding: '1px 16px'}}>{RenderRoutes(props)}</div>
-    </>
-}

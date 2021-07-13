@@ -19,3 +19,12 @@ export const RouterKeys = Object.freeze({
     ERROR: 'ERROR',
     LOGOUT: 'LOGOUT'
 })
+
+export const RouteKeyToName = Object.freeze({
+    LOGIN: "Login Page",
+    APP: 'App Index',
+    APP_ROOT: 'App Index',
+    APP_PAGE_1: 'App Page 1',
+    APP_PAGE_2: 'App Page 2',
+    LOGOUT: 'Abmelden'
+})
