@@ -1,6 +1,5 @@
 import React from "react"
 import {NavLink} from "react-router-dom"
-import {fakeAuth} from "../fakeAuth";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
 
@@ -45,7 +44,6 @@ function RouteMenue(routes) {
                         activeClassName="dropdown-link-selected"
                         className="dropdown-logout"
                         to="/logout"
-                        onClick={() => fakeAuth.logOut(() => alert("Logout in progress!"))}
                     >
                         <button className='dropbtn' style={{color: '#1e3b70'}}>
                             <FontAwesomeIcon

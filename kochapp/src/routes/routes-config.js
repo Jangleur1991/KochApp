@@ -7,6 +7,7 @@ import {faBars} from "@fortawesome/free-solid-svg-icons"
 import {kochmuetze} from "../kochmuetze"
 import RegisterPage from "../views/registerpage";
 import RouteMenue from "./routemenue";
+import Logout from "../views/logout";
 
 
 //Routes Config File
@@ -40,7 +41,8 @@ export const ROUTES_CONFIG = [
                 component: () => <h2>App Page 2</h2>
             }
         ]
-    }
+    },
+    {path: RouterPaths.LOGOUT, key: RouterKeys.LOGOUT, exact: true, isPrivat: true, component: Logout},
 ]
 
 //TODO: Refactoring

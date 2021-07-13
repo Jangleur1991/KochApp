@@ -14,9 +14,8 @@ export const fakeAuth = {
             alert("Benutzername oder Passwort sind nicht korrekt!")
         }
     },
-    logOut(cb) {
+    logOut() {
         this.isAuthenticated = false
-        setTimeout(cb, 1000)
     }
 }
 
