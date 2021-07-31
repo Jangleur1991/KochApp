@@ -36,7 +36,7 @@ export function useFormValidation({validations, initialValues}) {
         if (rules) {
             const {required, pattern, validateFunc} = rules
             return [
-                required && _checkRequired(required, value),
+                required && _checkRequired({required, value}),
                 pattern && _checkPattern(pattern, value),
                 validateFunc && _checkValidateFunc(validateFunc, value)
             ].find(m => m) || ''
@@ -70,14 +70,14 @@ function _checkBindFieldParameter(name) {
         throw new Error('The field name should be a string')
 }
 
-//TODO: Refactoring
-function _checkRequired(required, value) {
-    if (!value || !value.trim()) {
-        return (typeof required === 'string')
-            ? required
-            : 'Eingabe ist erforderlich!'
-    }
-    return ''
+function _checkRequired({required = 'Eingabe ist erforderlich', value = ''}) {
+    return _isNullUndefinedOrWhitspace(value)
+        ? required
+        : ''
+}
+
+function _isNullUndefinedOrWhitspace(value) {
+    return ['', null, undefined].includes(value)
 }
 
 function _checkPattern(pattern, value) {
