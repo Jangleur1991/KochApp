@@ -1,0 +1,363 @@
+/*TODO: In separate Files aufteilen und SASS/LESS verwenden!*/
+
+@font-face {
+    font-family: 'HashedBrowns-WyJgn';
+    src: local('HashedBrowns-WyJgn'), url(./fonts/HashedBrowns-WyJgn.ttf) format('truetype');
+}
+
+body {
+    background: lightgray;
+}
+
+.main {
+    margin: 0 auto;
+    font-size: 16px;
+    font-family: HashedBrowns-WyJgn, monospace;
+    text-align: center;
+    min-width: 360px;
+    max-width: 414px;
+    min-height: 812px;
+    color: white;
+    background: radial-gradient(circle, rgba(2,3,5,1) 0%, rgba(24,40,74,1) 60%, rgba(43,72,134,1) 100%);
+    border-radius: 5px;
+}
+
+.dropdown {
+    margin-top: 15px;
+    display: inline-block;
+    position: relative;
+    width: 50px;
+    float:left;
+}
+
+.dropbtn {
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    background: transparent;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: -15px;
+    left: 0;
+    min-width: 310px;
+    max-width: 364px;
+    min-height: 812px;
+    z-index: 1;
+    background: #f1f1f1;
+    box-shadow: 105px 0 0 0 rgb(0 0 0 / 40%);
+}
+
+.dropdown-header {
+    position: relative;
+    padding: 0 24px;
+    border-bottom: 1px solid #e0e0e0;
+    color: #1e3b70;
+}
+
+.dropdown-header .toque {
+    position: absolute;
+    top: -45px;
+    left: 95px;
+    transform: scale(0.3) rotate(-20deg);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    opacity: 0.2;
+}
+
+.dropdown-content ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown-link {
+    display: block;
+    text-decoration: none;
+    padding: 12px 20px;
+    text-align: left;
+    color: #1e3b70;
+}
+
+.dropdown-logout {
+    display: block;
+    text-decoration: none;
+    padding: 12px 12px 12px 10px;
+    text-align: left;
+    color: #1e3b70;
+}
+
+.dropdown-logout:hover {
+    background: #cbd3d8;
+    color: #1e3b70;
+}
+
+.dropdown-link-selected {
+    background: #b4bcc0;
+    color: #1e3b70;
+}
+
+.dropdown-link:hover {
+    background: #cbd3d8;
+    color: #1e3b70;
+}
+
+.input {
+    padding: 5px 15px;
+    margin-bottom: 15px;
+    border-style: solid;
+    border-radius: 5px;
+}
+
+.submit-button {
+    border-radius: 5px;
+    width: 185px;
+    margin-top: 15px;
+    padding: 3px;
+    margin-bottom: 15px;
+    border-width: 1px;
+    border-style: solid;
+    background-color: white;
+}
+
+.checkbox {
+    position: relative;
+    right: 17px;
+}
+
+.checkbox-check {
+    transform: scale(1.15);
+    margin-right: 5px;
+    opacity: 0.9;
+}
+
+.checkbox-label {
+    position: relative;
+    bottom: 1px;
+}
+
+.toque {
+    height: 70px;
+    margin: auto;
+    position: relative;
+    bottom: 10px;
+    width: 70px;
+}
+
+.toque div {
+    border: solid 1px black;
+}
+
+.toque-bottom {
+    position: absolute;
+    margin: auto;
+    height: 40px;
+    width: 40px;
+    background-color: white;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.toque-left {
+    border-radius: 50%;
+    margin: auto;
+    position: absolute;
+    left: 3px;
+    top: 7px;
+    background-color: white;
+    height: 30px;
+    width: 30px;
+}
+
+.toque-middle {
+    border-radius: 50%;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 40px;
+    background-color: white;
+    height: 30px;
+    width: 30px;
+}
+
+.toque-right {
+    border-radius: 50%;
+    margin: auto;
+    position: absolute;
+    right: 3px;
+    top: 7px;
+    background-color: white;
+    height: 30px;
+    width: 30px;
+}
+
+.toque::before {
+    border-radius: 50%;
+    margin: auto;
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    background-color: white;
+    height: 30px;
+    width: 30px;
+    z-index: 1;
+    content: '';
+}
+
+.toque::after {
+    border-radius: 50%;
+    margin: auto;
+    position: absolute;
+    left: 30px;
+    bottom: 30px;
+    background-color: white;
+    height: 30px;
+    width: 30px;
+    z-index: 1;
+    content: '';
+}
+
+.errorpage {
+    margin: auto;
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.error, .error-register {
+    color: red;
+    font-family: monospace;
+    font-size: 0.7em;
+    margin-top: -5px;
+}
+
+.error-register {
+    margin-top: 5px;
+}
+
+.login-button {
+    border-radius: 5px;
+    width: 185px;
+    margin-top: 15px;
+    padding: 3px;
+    border-width: 1px;
+    border-style: solid;
+    background-color: white;
+    margin-bottom: 15px;
+}
+
+.button {
+    border-radius: 5px;
+    width: 155px;
+    margin-top: 15px;
+    padding: 3px;
+    border-width: 1px;
+    border-style: solid;
+    background-color: white;
+}
+
+.register-container * {
+    box-sizing: border-box;
+}
+
+.register-container {
+    box-sizing: border-box;
+    width: 92%;
+    padding: 20px;
+    margin: 0 auto;
+    border-radius: 10px;
+    /*border: 3px solid white;*/
+}
+
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+    margin-bottom: 25px;
+}
+
+.register-label {
+    display: inline-block;
+    padding: 8px 8px 8px 0;
+    font-size: 12px;
+    /*font-family: monospace;*/
+}
+
+.register-input {
+    width: 100%;
+    border-style: solid;
+    padding: 6px;
+    border-radius: 4px;
+}
+
+.register-submit {
+    border-radius: 5px;
+    width: 185px;
+    margin-top: 15px;
+    margin-left: 15px;
+    padding: 5px;
+    border-width: 1px;
+    border-style: solid;
+    background-color: white;
+}
+
+@media screen and (max-width: 600px) {
+    .col-25, .col-75 {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .register-submit  {
+        width: 80%;
+        margin-left: 0;
+        margin-top: 25px;
+    }
+}
+
+@media screen and (max-height: 415px) {
+    .main {
+        min-width: 812px;
+    }
+    .register-container {
+        width: 50%;
+    }
+
+    .dropdown-content {
+        min-width: 450px;
+        max-width: 812px;
+        box-shadow: 450px 0 0 0 rgb(0 0 0 / 40%);
+    }
+
+    .dropdown-header .toque {
+        position: absolute;
+        top: -45px;
+        left: 165px;
+        transform: scale(0.3) rotate(-20deg);
+    }
+}
