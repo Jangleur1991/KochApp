@@ -10,7 +10,6 @@ export function RenderRoutes({routes}) {
     return (
         <Switch>
             {routes.map(route => <RouteWithSubRoute key={route.key} {...route}/>)}
-            <Route path="/logout" component={Logout}/>
             <Route component={ErrorPage}/>
         </Switch>
     )
