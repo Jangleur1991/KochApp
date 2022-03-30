@@ -70,6 +70,7 @@ function _checkBindFieldParameter(name) {
         throw new Error('The field name should be a string')
 }
 
+//TODO: Refactoring. '' benoetigt?
 function _checkRequired({required = 'Eingabe ist erforderlich', value = ''}) {
     return _isNullUndefinedOrWhitspace(value)
         ? required
@@ -80,6 +81,7 @@ function _isNullUndefinedOrWhitspace(value) {
     return ['', null, undefined].includes(value)
 }
 
+//TODO: Refactoring. Was ist wenn pattern kein value enthaelt?
 function _checkPattern(pattern, value) {
     if (!new RegExp(pattern.value).exec(value))
         return pattern.message || 'Eingabe ist ungültig!'

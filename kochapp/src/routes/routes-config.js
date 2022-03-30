@@ -14,6 +14,7 @@ export const ROUTES_CONFIG = [
         path: RouterPaths.APP,
         key: RouterKeys.APP,
         component: Sidebar,
+        isPrivat: true,
         routes: [
             {
                 path: RouterPaths.APP,

@@ -7,9 +7,9 @@ const initState = Object.freeze({
 })
 
 const reducerActions = Object.freeze({
-    [SET_USERNAME]: (state, action) => ({...state, username: action.username}),
-    [SET_PASSWORD]: (state, action) => ({...state, password: action.password}),
-    [SET_KEEP_LOGGED_IN]: (state, action) => ({...state, keepLoggedIn: action.keepLoggedIn})
+    [SET_USERNAME]: (state, {username}) => ({...state, username}),
+    [SET_PASSWORD]: (state, {password}) => ({...state, password}),
+    [SET_KEEP_LOGGED_IN]: (state, {keepLoggedIn}) => ({...state, keepLoggedIn})
 })
 
 export const loginreducer = (state = initState, action) =>
